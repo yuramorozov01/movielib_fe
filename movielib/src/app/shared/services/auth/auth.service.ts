@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { IUser } from '../../interfaces/auth.interfaces';
+import { IUser, IJWT, IAccess, IRefresh } from '../../interfaces/auth.interfaces';
 
 
 @Injectable({
@@ -12,43 +12,78 @@ import { IUser } from '../../interfaces/auth.interfaces';
 })
 export class AuthService {
 
-	private token = null;
+	private access: string = null;
+	private refresh: string = null;
+	private refreshTokenTimeout;
 
 	constructor(private http: HttpClient) {
 
 	}
 
 	register(user: IUser) : Observable<IUser>{
-		return this.http.post<IUser>('/auth/register', user);
+		return this.http.post<IUser>('/auth/users/', user);
 	}
 
-	login(user: IUser): Observable<{token: string}> {
-
-		return this.http.post<{token: string}>('/auth/login', user)
+	login(user: IUser): Observable<IJWT> {
+		return this.http.post<IJWT>('/auth/jwt/create/', user)
 			.pipe(
 				tap(
-					({token}) => {
-						localStorage.setItem('auth-token', token);
-						this.setToken(token);
+					({access, refresh}) => {
+						localStorage.setItem('auth-token', access);
+						this.setAccessToken(access);
+						localStorage.setItem('auth-refresh', refresh);
+						this.setRefreshToken(refresh);
+						this.startRefreshTokenTimer();
 					}
 				)
 			);
 	}
 
-	setToken(token: string) {
-		this.token = token;
+	setAccessToken(access: string) {
+		this.access = access;
+	} 
+
+	setRefreshToken(refresh: string) {
+		this.refresh = refresh;
 	} 
 
 	getToken(): string {
-		return this.token;
+		return this.access;
 	}
 
 	isAuthenticated(): boolean {
-		return !!this.token;
+		return !!this.access;
+	}
+
+	refreshAccessToken(): Observable<IAccess> {
+		return this.http.post<IAccess>('/auth/jwt/refresh/', { refresh: this.refresh })
+			.pipe(
+				tap(
+					({access}) => {
+						localStorage.setItem('auth-token', access);
+						this.setAccessToken(access);
+						this.startRefreshTokenTimer();
+					}
+				)
+			);
 	}
 
 	logout() {
-		this.setToken(null);
+		this.stopRefreshTokenTimer();
+		this.setAccessToken(null);
+		this.setRefreshToken(null);
 		localStorage.clear();
+	}
+
+	startRefreshTokenTimer() {
+		const access = JSON.parse(atob(this.access.split('.')[1]));
+
+		const expiresIn = new Date(access.exp * 1000);
+		const timeout = expiresIn.getTime() - Date.now() - (60 * 1000);
+		this.refreshTokenTimeout = setTimeout(() => this.refreshAccessToken().subscribe(), timeout);
+	}
+
+	stopRefreshTokenTimer() {
+		clearTimeout(this.refreshTokenTimeout);
 	}
 }

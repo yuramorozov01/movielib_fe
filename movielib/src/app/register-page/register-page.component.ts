@@ -25,6 +25,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.form = new FormGroup({
 			email: new FormControl(null, [Validators.required, Validators.email]),
+			username: new FormControl(null, [Validators.required]),
 			password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
 		});
 	}
@@ -46,7 +47,8 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
 				});
 			},
 			error => {
-				MaterializeService.toast(error.error.message);
+				console.log(error);
+				MaterializeService.toast(error);
 				this.form.enable();
 			}
 		);

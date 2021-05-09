@@ -24,7 +24,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
 	ngOnInit(): void {
 		this.form = new FormGroup({
-			login: new FormControl(null, [Validators.required]),
+			username: new FormControl(null, [Validators.required]),
 			password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
 		});
 
@@ -50,7 +50,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 		this.aSub = this.auth.login(this.form.value).subscribe(
 			() => this.router.navigate(['/movies']),
 			error => {
-				MaterializeService.toast(error.error.message);
+				console.log(error);
+				MaterializeService.toast(error);
 				this.form.enable();
 			}
 		);

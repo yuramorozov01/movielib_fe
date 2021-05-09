@@ -36,7 +36,7 @@ import { MoviesPageComponent } from './movies-page/movies-page.component';
             provide: HTTP_INTERCEPTORS,
             multi: true,
             useClass: TokenInterceptor,
-        }
+        },
     ],
     bootstrap: [AppComponent]
 })
