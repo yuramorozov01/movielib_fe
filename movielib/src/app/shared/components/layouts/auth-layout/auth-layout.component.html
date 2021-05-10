@@ -1,26 +1,19 @@
 <nav>
-	<div class="nav-wrapper grey darken-1">
+	<div class="nav-wrapper white">
 		<a routerLink="/" class="brand-logo">Movielib</a>
 		<a href="#" data-target="mobile-ver" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li routerLinkActive="active">
-				<a routerLink="/movies">Movies</a>
-			</li>
-			<li routerLinkActive="active">
-				<a routerLink="/login">Login</a>
-			</li>
-			<li routerLinkActive="active">
-				<a routerLink="/register">Register</a>
+			<li class="bold" *ngFor="let link of links" routerLinkActive="active">
+				<a [routerLink]="[link.url]">{{ link.name }}</a>
 			</li>
 		</ul>
 	</div>
 </nav>
 
 <ul class="sidenav" id="mobile-ver">
-	<li><a href="sass.html">Sass</a></li>
-	<li><a href="badges.html">Components</a></li>
-	<li><a href="collapsible.html">Javascript</a></li>
-	<li><a href="mobile.html">Mobile</a></li>
+	<li class="bold" *ngFor="let link of links" routerLinkActive="active">
+		<a [routerLink]="[link.url]">{{ link.name }}</a>
+	</li>
 </ul>
 
 <div class="auth-block">

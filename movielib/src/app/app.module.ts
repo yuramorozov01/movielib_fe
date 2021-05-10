@@ -13,6 +13,9 @@ import { RegisterPageComponent } from './register-page/register-page.component';
 import { TokenInterceptor } from './shared/services/auth/token.interceptor';
 import { LoaderComponent } from './shared/components/loader/loader.component';
 import { MoviesPageComponent } from './movies-page/movies-page.component';
+import { PaginationComponent } from './shared/components/pagination/pagination.component';
+import { MovieListComponent } from './movies-page/movie-list/movie-list.component';
+import { MoviePageComponent } from './movies-page/movie-page/movie-page.component';
 
 @NgModule({
     declarations: [
@@ -23,6 +26,9 @@ import { MoviesPageComponent } from './movies-page/movies-page.component';
         RegisterPageComponent,
         LoaderComponent,
         MoviesPageComponent,
+        PaginationComponent,
+        MovieListComponent,
+        MoviePageComponent,
     ],
     imports: [
         BrowserModule,

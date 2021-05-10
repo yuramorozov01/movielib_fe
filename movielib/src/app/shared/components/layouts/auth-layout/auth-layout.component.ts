@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthLayoutComponent implements OnInit {
 
+	links = [
+		{
+			url: '/login',
+			name: 'Login',
+		},
+		{
+			url: '/register',
+			name: 'Register',
+		},
+	];
+
   constructor() { }
 
   ngOnInit(): void {

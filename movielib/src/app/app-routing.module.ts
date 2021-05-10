@@ -7,6 +7,7 @@ import { SiteLayoutComponent } from './shared/components/layouts/site-layout/sit
 import { LoginPageComponent } from './login-page/login-page.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { MoviesPageComponent } from './movies-page/movies-page.component';
+import { MoviePageComponent } from './movies-page/movie-page/movie-page.component';
 
 import { AuthGuard } from './shared/services/auth/auth.guard';
 
@@ -36,8 +37,17 @@ const routes: Routes = [
 		canActivate: [AuthGuard],
 		children: [
 			{
+				path: '', 
+				redirectTo: '/movies',
+				pathMatch: 'full',
+			},
+			{	
 				path: 'movies',
 				component: MoviesPageComponent
+			},
+			{
+				path: 'movies/:id',
+				component: MoviePageComponent
 			},
 		],
 	},
