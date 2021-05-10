@@ -18,6 +18,10 @@ export class SiteLayoutComponent implements OnInit, AfterViewInit {
 			url: '/movies',
 			name: 'All movies',
 		},
+		{
+			url: '/me',
+			name: 'Account',
+		},
 	];
 
 	constructor(private auth: AuthService,
