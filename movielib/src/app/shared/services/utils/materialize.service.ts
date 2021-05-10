@@ -11,6 +11,10 @@ export class MaterializeService {
 		M.FloatingActionButton.init(ref.nativeElement);
 	}
 
+	static initializeParallax(ref: ElementRef) {
+		M.Parallax.init(ref.nativeElement);
+	}
+
 	static updateTextInputs() {
 		M.updateTextFields();
 	}

@@ -1,0 +1,11 @@
+<ul class="pagination">
+	<li [class.disabled]="currentPage === 1" class="waves-effect">
+		<a (click)="changePage(currentPage - 1)"><i class="material-icons">chevron_left</i></a>
+	</li>
+	<li *ngFor="let page of pages" [ngClass]="{ active: page === currentPage }" class="waves-effect">
+		<a (click)="changePage(page)">{{ page }}</a>
+	</li>
+	<li [class.disabled]="currentPage == pageCount" class="waves-effect">
+		<a (click)="changePage(currentPage + 1)"><i class="material-icons">chevron_right</i></a>
+	</li>
+</ul>
