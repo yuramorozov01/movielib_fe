@@ -47,7 +47,7 @@ export class AuthService {
 		this.refresh = refresh;
 	} 
 
-	getToken(): string {
+	getAccessToken(): string {
 		return this.access;
 	}
 
