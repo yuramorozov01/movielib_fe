@@ -20,7 +20,7 @@ export class MovieService {
 		});
 	}
 
-	getById(id: string): Observable<IMovie> {
+	getById(id: number): Observable<IMovie> {
 		return this.http.get<IMovie>(`/api/v1/movie/${id}`);
 	}
 

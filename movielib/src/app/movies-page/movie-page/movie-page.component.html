@@ -1,1 +1,110 @@
-<p>movie-page works!</p>
+<div class="row" *ngIf="movie; else loader">
+	<div class="card-deck col l4">
+		<div class="card-outer">
+			<div class="card">
+				<div class="card-image waves-effect waves-block waves-light">
+					<img class="activator" src="{{ movie.poster }}">
+				</div>
+				<div class="card-content">
+					<span class="card-title activator grey-text text-darken-4">{{ movie.title }}<i class="material-icons right">more_vert</i></span>
+					<p>
+						stars
+					</p>
+				</div>
+				<div class="card-reveal">
+					<span class="card-title grey-text text-darken-4">{{ movie.title }}<i class="material-icons right">close</i></span>
+					<p>{{ movie.tagline }}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col l8">
+		<div class="card-outer">
+			<div class="card description-card">
+				<div class="card-content">
+					<div class="main-info-text">
+						<h4 class="grey-text text-darken-4">{{ movie.title }}</h4>
+						<ul>
+							<li class="list"><span><b>Year: </b>{{ movie.year }}</span></li>
+							<li class="list"><span><b>Country: </b>{{ movie.country }}</span></li>
+							<li class="list">
+								<span>
+									<b>Directors: </b>
+									<span *ngFor="let director of movie.directors">{{ director.name }}, </span>
+								</span>
+							</li>
+							<li class="list">
+								<span>
+									<b>Actors: </b>
+									<span *ngFor="let actor of movie.actors">{{ actor.name }}, </span>
+								</span>
+							</li>
+							<li class="list">
+								<span>
+									<b>Genres: </b>
+									<span *ngFor="let genre of movie.genres">{{ genre }}, </span>
+								</span>
+							</li>
+							<li class="list"><span><b>Category: </b>{{ movie.category }}</span></li>
+							<li class="list"><span><b>Release data: </b>{{ movie.world_premiere }}</span></li>
+							<li class="list"><span><b>Budget: </b>${{ movie.budget }}</span></li>
+							<li class="list"><span><b>Fees in the USA: </b>${{ movie.fees_in_usa }}</span></li>
+							<li class="list"><span><b>Fees in the world: </b>${{ movie.fees_in_world }}</span></li>
+						</ul>
+						<blockquote>
+							<p class="card-title grey-text text-darken-3 section-title">{{ movie.tagline }}</p>
+						</blockquote>
+					</div>
+					<hr>
+					<div class="description-text">
+						<h5 class="card-title grey-text text-darken-4">Description</h5>
+						<p [innerHTML]="movie.description"></p>
+					</div>
+					<hr>
+					<div class="rating">
+						<span class="heading">User Rating</span>
+						<br>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star checked"></span>
+						<span class="fa fa-star"></span>
+						<p>4.1 average based on 254 reviews.</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col l12">
+		<div class="card-outer">
+			<div class="card description-card">
+				<div class="card-content">
+					<div class="main-info-text">
+						<h4 class="grey-text text-darken-4">Reviews</h4>
+						<div class="reviews">
+							<div class="card horizontal" *ngFor="let review of movie.reviews">
+								<div class="card-stacked">
+									<div class="card-content row">
+										<img src="../assets/img/unknown.png" class="circle" height="70" width="70" alt="image">
+										<h5>{{ review.name }}</h5>
+										<p [innerHTML]="review.text"></p>
+									</div>
+									<div class="card-action">
+										<a href="#formReview">Reply</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+<ng-template #loader>
+	<app-loader></app-loader>
+</ng-template>
