@@ -1,12 +1,12 @@
 <nav>
     <div class="nav-wrapper white">
-        <a routerLink="/" class="brand-logo">Movielib</a>
-        <a href="#" data-target="mobile-ver" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a routerLink="/movies" class="brand-logo">Movielib</a>
+        <a data-target="mobile-ver" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li class="bold" *ngFor="let link of links" routerLinkActive="active">
                 <a class="waves-effect waves-orange" [routerLink]="[link.url]">{{ link.name }}</a>
             </li>
-            <li class="bold">
+            <li class="bold last">
                 <a href="#" class="waves-effect waves-orange" (click)="logout($event)">Exit</a>
             </li>
         </ul>
@@ -24,7 +24,7 @@
 </div>
 
 <!--Floating button-->
-<div class="fixed-action-btn" #floating>
+<!-- <div class="fixed-action-btn" #floating>
     <a class="btn-floating btn-large red">
         <i class="large material-icons">add</i>
     </a>
@@ -35,4 +35,35 @@
         	</a>
         </li>
     </ul>
+</div> -->
+
+<div class="row parallax-banner">
+    <div id="index-banner" class="parallax-container">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <br><br>
+                <div class="row center">
+                    <h3 class="header center teal-text">Enjoy watching!</h3>
+                </div>
+                <br><br>
+            </div>
+        </div>
+        <div class="parallax" #parallax><img src="assets/img/parallax.jpg"></div>
+    </div>
 </div>
+
+<footer class="row page-footer teal">
+    <div class="container">
+        <div class="row">
+            <div class="col l12 s12">
+                <h5 class="white-text">Yura Morozov Bio</h5>
+                <p class="grey-text text-lighten-4">Third-year student of the Belarusian State University of Informatics and Radioelectronics. I study at the faculty of computer systems and networks in the specialty software for information technology.</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+        Made by <a class="brown-text text-lighten-3">Morozov</a>
+        </div>
+    </div>
+</footer>

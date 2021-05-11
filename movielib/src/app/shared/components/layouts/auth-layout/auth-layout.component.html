@@ -1,7 +1,7 @@
 <nav>
 	<div class="nav-wrapper white">
-		<a routerLink="/" class="brand-logo">Movielib</a>
-		<a href="#" data-target="mobile-ver" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+		<a routerLink="/movies" class="brand-logo">Movielib</a>
+		<a data-target="mobile-ver" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
 			<li class="bold" *ngFor="let link of links" routerLinkActive="active">
 				<a [routerLink]="[link.url]">{{ link.name }}</a>

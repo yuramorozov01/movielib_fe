@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { MovieService } from '../../shared/services/movie/movie.service';
-import { IMovieList, IMovieListMovie, ILinks } from '../../shared/interfaces/movies.interfaces';
+import { IMovieList, IMovieListMovie, ILinks, IRatingStar } from '../../shared/interfaces/movies.interfaces';
 
 import { MaterializeService } from '../../shared/services/utils/materialize.service';
 
@@ -17,6 +17,7 @@ export class MovieListComponent implements OnInit {
 	links: ILinks;
 	count: number;
 	movies: IMovieListMovie[];
+  ratingStars: IRatingStar[];
   currentPage: number = 1;
   pageSize: number = 8;
   pageCount: number = 1;
@@ -37,6 +38,15 @@ export class MovieListComponent implements OnInit {
       this.count = movieList['count'];
       this.movies = movieList['results'];
       this.pageCount = Math.ceil(this.count / this.pageSize);
+      let obsRatingStars$ = this.movieService.getRatingStars();
+        obsRatingStars$.subscribe(
+          (ratingStars: IRatingStar[]) => {
+            this.ratingStars = ratingStars;
+          },
+          (error) => {
+            MaterializeService.toast(error.error.detail);
+          }
+        );
     });
   }
 

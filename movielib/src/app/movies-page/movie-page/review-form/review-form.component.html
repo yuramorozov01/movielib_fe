@@ -1,0 +1,24 @@
+<h4 class="grey-text text-darken-4">Write your own review:</h4>
+<div class="card-outer">
+	<div class="card description-card">
+		<div class="card-content">
+			<div class="main-info-text">
+				<form [formGroup]="form" (ngSubmit)="onSubmit()">
+					<div class="input-field">
+						<i class="material-icons prefix">mode_edit</i>
+						<textarea formControlName="text" id="text" class="materialize-textarea" [ngClass]="{'invalid': form.get('text').invalid && form.get('text').touched}" required></textarea>
+						<label for="text">Your review</label>
+						<span class="helper-text red-text" *ngIf="form.get('text').invalid && form.get('text').touched">
+							<span *ngIf="form.get('text').errors['required']">Enter review</span>
+						</span>
+					</div>
+					<div>
+						<button [disabled]="form.invalid || form.disabled" class="waves-effect waves-light btn">
+							Send review
+						</button>
+					</div>
+				</form>
+			</div>		
+		</div>
+	</div>
+</div>

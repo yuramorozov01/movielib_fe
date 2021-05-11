@@ -4,6 +4,12 @@ export interface IUser {
 	password: string;
 }
 
+export interface IUserMe {
+	email: string;
+	id: number;
+	username: string;
+}
+
 export interface IJWT {
 	refresh: string;
 	access: string;

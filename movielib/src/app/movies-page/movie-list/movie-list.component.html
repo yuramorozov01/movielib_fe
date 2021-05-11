@@ -4,15 +4,16 @@
 	<div *ngIf="movieList.length !== 0; else empty">
 		<div class="card-deck l12">
 			<div class="card-outer col l3" *ngFor="let movie of movies">
-				<div class="card ">
+				<div class="card sticky-action">
 					<div class="card-image waves-effect waves-block waves-light">
-						<img class="activator" src="{{ movie.poster }}">
+						<img class="activator poster" src="{{ movie.poster }}">
 					</div>
 					<div class="card-content">
 						<span class="card-title activator grey-text text-darken-4">{{ movie.title }}<i class="material-icons right">more_vert</i></span>
-						<p>
-							<button type="button" class="btn waves-effect wavers-light btn-small" [routerLink]="['/movie', movie.id]">View</button>
-						</p>
+					</div>
+					<div class="card-action">
+						<button type="button" class="btn waves-effect wavers-light btn-small" [routerLink]="['/movies', movie.id]">View</button>
+						<app-rating-stars class="" [middleStar]="movie.middle_star" [ratingStars]="ratingStars"></app-rating-stars>
 					</div>
 					<div class="card-reveal">
 						<span class="card-title grey-text text-darken-4">{{ movie.title }}<i class="material-icons right">close</i></span>

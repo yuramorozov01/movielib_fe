@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { IUser, IJWT, IAccess, IRefresh } from '../../interfaces/auth.interfaces';
+import { IUser, IUserMe, IJWT, IAccess, IRefresh } from '../../interfaces/auth.interfaces';
 
 
 @Injectable({
@@ -28,28 +28,32 @@ export class AuthService {
 		return this.http.post<IJWT>('/auth/jwt/create/', user)
 			.pipe(
 				tap(
-					({access, refresh}) => {
-						localStorage.setItem('auth-token', access);
-						this.setAccessToken(access);
+					({refresh, access}) => {
 						localStorage.setItem('auth-refresh', refresh);
 						this.setRefreshToken(refresh);
+						localStorage.setItem('auth-token', access);
+						this.setAccessToken(access);
 						this.startRefreshTokenTimer();
 					}
 				)
 			);
 	}
 
+	me(): Observable<IUserMe> {
+		return this.http.get<IUserMe>('/auth/users/me/');
+	}
+
 	setAccessToken(access: string) {
 		this.access = access;
-	} 
-
-	setRefreshToken(refresh: string) {
-		this.refresh = refresh;
 	} 
 
 	getAccessToken(): string {
 		return this.access;
 	}
+
+	setRefreshToken(refresh: string) {
+		this.refresh = refresh;
+	} 
 
 	isAuthenticated(): boolean {
 		return !!this.access;
