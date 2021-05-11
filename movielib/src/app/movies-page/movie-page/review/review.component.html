@@ -1,16 +1,16 @@
 <div class="reviews" *ngFor="let review of reviews">
 	<div class="card horizontal">
 		<div class="card-stacked">
-			<div class="card-content row">
+			<div class="card-content review-text">
 				<img src="../assets/img/unknown.png" class="circle" height="70" width="70" alt="image">
 				<h5>{{ review.name }}</h5>
-				<p [innerHTML]="review.text"></p>
+				<p class="review-text">{{ review.text }}</p>
 			</div>
 			<div class="card-action">
-				<a href="#formReview">Reply</a>
+				<button type="button" class="btn waves-effect wavers-light btn-small" (click)="reply(review.id)">Reply</button>
 			</div>
 			<div class="children">
-				<app-review *ngIf="review.children" [reviews]="review.children"></app-review>
+				<app-review *ngIf="review.children" [reviews]="review.children" (replyEvent)="reply($event)"></app-review>
 			</div>
 		</div>
 	</div>

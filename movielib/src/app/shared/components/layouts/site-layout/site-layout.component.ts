@@ -11,16 +11,13 @@ import { MaterializeService } from '../../../services/utils/materialize.service'
 })
 export class SiteLayoutComponent implements OnInit, AfterViewInit {
 
-	@ViewChild('floating') floatingRef: ElementRef;
+	// @ViewChild('floating') floatingRef: ElementRef;
+	@ViewChild('parallax') parallaxRef: ElementRef;
 
 	links = [
 		{
 			url: '/movies',
 			name: 'All movies',
-		},
-		{
-			url: '/me',
-			name: 'Account',
 		},
 	];
 
@@ -31,7 +28,8 @@ export class SiteLayoutComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit(): void {
-		MaterializeService.initializeFloatingButton(this.floatingRef);
+		// MaterializeService.initializeFloatingButton(this.floatingRef);
+		MaterializeService.initializeParallax(this.parallaxRef);
 	}
 
 	logout(event: Event) {

@@ -18,6 +18,7 @@ import { MovieListComponent } from './movies-page/movie-list/movie-list.componen
 import { MoviePageComponent } from './movies-page/movie-page/movie-page.component';
 import { ReviewComponent } from './movies-page/movie-page/review/review.component';
 import { ReviewFormComponent } from './movies-page/movie-page/review-form/review-form.component';
+import { RatingStarsComponent } from './shared/components/rating-stars/rating-stars.component';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import { ReviewFormComponent } from './movies-page/movie-page/review-form/review
         MoviePageComponent,
         ReviewComponent,
         ReviewFormComponent,
+        RatingStarsComponent,
     ],
     imports: [
         BrowserModule,

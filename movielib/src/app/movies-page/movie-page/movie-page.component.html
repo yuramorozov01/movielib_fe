@@ -55,38 +55,20 @@
 					<hr>
 					<div class="description-text">
 						<h5 class="card-title grey-text text-darken-4">Description</h5>
-						<p [innerHTML]="movie.description"></p>
+						<section class="description" [innerHTML]="movie.description" #description></section>
 					</div>
 					<hr>
-					<div class="rating">
-						<span class="heading">User Rating</span>
-						<br>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
-						<p>4.1 average based on 254 reviews.</p>
-
-					</div>
+					<span class="heading">Users rating</span>
+					<app-rating-stars [middleStar]="middleStar" [ratingStars]="ratingStars" (ratingClickEvent)="ratingClick($event)"></app-rating-stars>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col">
-		<div class="card-outer">
-			<div class="card description-card">
-				<div class="card-content">
-					<div class="main-info-text">
-						<h4 class="grey-text text-darken-4">Reviews</h4>
-						<app-review *ngIf="movie.reviews" [reviews]="movie.reviews"></app-review>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="col l12">
+		<app-review-form [movie]="movie.id" [parentReview]="parentReview" (replyCompleteEvent)="replyComplete($event)" #reviewForm></app-review-form>
+		<h5 class="grey-text text-darken-4" *ngIf="movie.reviews?.length">Reviews:</h5>
+		<app-review *ngIf="movie.reviews" [reviews]="movie.reviews" (replyEvent)="reply($event)"></app-review>
 	</div>
-
-
 </div>
 
 <ng-template #loader>

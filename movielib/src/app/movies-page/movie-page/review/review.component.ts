@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { IReview } from '../../../shared/interfaces/movies.interfaces';
 
@@ -14,10 +14,15 @@ import { MaterializeService } from '../../../shared/services/utils/materialize.s
 export class ReviewComponent implements OnInit {
 
 	@Input() reviews: IReview;
+	@Output() replyEvent = new EventEmitter<number>();
 
   constructor(private movieService: MovieService) { }
 
   ngOnInit(): void {
+  }
+
+  reply(value: number) {
+    this.replyEvent.emit(value);
   }
 
 }

@@ -1,0 +1,6 @@
+<div class="rating">
+	<br>
+	<span *ngFor="let rating of ratingStars" [ngClass]="rating.value <= this.middleStar ? 'checked' :''" class="fa fa-star" aria-hidden="true" (click)="onClick(rating.value)">
+	</span>
+	<p>{{ middleStar ? middleStar : 'unknown' }} average</p>
+</div>

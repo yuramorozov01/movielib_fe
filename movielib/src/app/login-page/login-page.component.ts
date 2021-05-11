@@ -48,10 +48,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 	onSubmit() {
 		this.form.disable();
 		this.aSub = this.auth.login(this.form.value).subscribe(
-			() => this.router.navigate(['/movies']),
+			(tokens: any) => {
+				this.router.navigate(['/movies']);
+			},
 			error => {
-				console.log(error);
-				MaterializeService.toast(error);
+				MaterializeService.toast(error.error.detail);
 				this.form.enable();
 			}
 		);

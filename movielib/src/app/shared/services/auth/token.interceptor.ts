@@ -17,10 +17,9 @@ export class TokenInterceptor implements HttpInterceptor {
 		if (this.auth.isAuthenticated()) {
 			req = req.clone({
 				setHeaders: {
-					Authorization: 'JWT ' + this.auth.getAccessToken(),
+					Authorization: `JWT ${this.auth.getAccessToken()}`,
 				},
 			});
-
 		}
 		return next.handle(req).pipe(
 				catchError(

@@ -2,3 +2,7 @@
 	padding-left: 30px;
 	padding-bottom: 10px;
 }
+
+.review-text {
+	overflow-wrap: break-word;
+}
