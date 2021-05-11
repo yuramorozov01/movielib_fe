@@ -1,0 +1,23 @@
+import { Component, OnInit, Input } from '@angular/core';
+
+import { IReview } from '../../../shared/interfaces/movies.interfaces';
+
+import { MovieService } from '../../../shared/services/movie/movie.service';
+import { MaterializeService } from '../../../shared/services/utils/materialize.service';
+
+
+@Component({
+  selector: 'app-review',
+  templateUrl: './review.component.html',
+  styleUrls: ['./review.component.css']
+})
+export class ReviewComponent implements OnInit {
+
+	@Input() reviews: IReview;
+
+  constructor(private movieService: MovieService) { }
+
+  ngOnInit(): void {
+  }
+
+}

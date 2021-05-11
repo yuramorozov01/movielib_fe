@@ -6,10 +6,7 @@
 					<img class="activator" src="{{ movie.poster }}">
 				</div>
 				<div class="card-content">
-					<span class="card-title activator grey-text text-darken-4">{{ movie.title }}<i class="material-icons right">more_vert</i></span>
-					<p>
-						stars
-					</p>
+					<span class="card-title activator grey-text text-darken-4 center">{{ movie.title }}<i class="material-icons right">more_vert</i></span>
 				</div>
 				<div class="card-reveal">
 					<span class="card-title grey-text text-darken-4">{{ movie.title }}<i class="material-icons right">close</i></span>
@@ -76,26 +73,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="col l12">
+	<div class="col">
 		<div class="card-outer">
 			<div class="card description-card">
 				<div class="card-content">
 					<div class="main-info-text">
 						<h4 class="grey-text text-darken-4">Reviews</h4>
-						<div class="reviews">
-							<div class="card horizontal" *ngFor="let review of movie.reviews">
-								<div class="card-stacked">
-									<div class="card-content row">
-										<img src="../assets/img/unknown.png" class="circle" height="70" width="70" alt="image">
-										<h5>{{ review.name }}</h5>
-										<p [innerHTML]="review.text"></p>
-									</div>
-									<div class="card-action">
-										<a href="#formReview">Reply</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						<app-review *ngIf="movie.reviews" [reviews]="movie.reviews"></app-review>
 					</div>
 				</div>
 			</div>

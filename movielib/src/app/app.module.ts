@@ -16,6 +16,8 @@ import { MoviesPageComponent } from './movies-page/movies-page.component';
 import { PaginationComponent } from './shared/components/pagination/pagination.component';
 import { MovieListComponent } from './movies-page/movie-list/movie-list.component';
 import { MoviePageComponent } from './movies-page/movie-page/movie-page.component';
+import { ReviewComponent } from './movies-page/movie-page/review/review.component';
+import { ReviewFormComponent } from './movies-page/movie-page/review-form/review-form.component';
 
 @NgModule({
     declarations: [
@@ -29,6 +31,8 @@ import { MoviePageComponent } from './movies-page/movie-page/movie-page.componen
         PaginationComponent,
         MovieListComponent,
         MoviePageComponent,
+        ReviewComponent,
+        ReviewFormComponent,
     ],
     imports: [
         BrowserModule,

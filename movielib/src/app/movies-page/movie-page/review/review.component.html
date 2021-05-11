@@ -1,0 +1,17 @@
+<div class="reviews" *ngFor="let review of reviews">
+	<div class="card horizontal">
+		<div class="card-stacked">
+			<div class="card-content row">
+				<img src="../assets/img/unknown.png" class="circle" height="70" width="70" alt="image">
+				<h5>{{ review.name }}</h5>
+				<p [innerHTML]="review.text"></p>
+			</div>
+			<div class="card-action">
+				<a href="#formReview">Reply</a>
+			</div>
+			<div class="children">
+				<app-review *ngIf="review.children" [reviews]="review.children"></app-review>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -16,6 +16,8 @@ import { MaterializeService } from '../../shared/services/utils/materialize.serv
   styleUrls: ['./movie-page.component.css']
 })
 export class MoviePageComponent implements OnInit {
+
+	@Input() middleStar: number;
 
 	movie: IMovie;
 
